@@ -19,17 +19,35 @@
   "author": "PhuongDT",
   "main": "src/index.js",
   "scripts": {
+    "beauty": "lint-staged",
     "start": "nodemon --inspect src/index.js",
     "watch": "sass --watch src/resources/scss/app.scss src/public/css/app.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "{prettier --write --single-quote --trailing-comma all --tab-width 4}"
+  },
+  "husky": {
+    "hook": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test",
+      "...": "..."
+    }
+  },
   "dependencies": {
     "express": "^5.2.1",
-    "express-handlebars": "^8.0.6"
+    "express-handlebars": "^8.0.6",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.13.9",
+    "mongoose-slug-generator": "^1.0.4",
+    "mongoose-slug-updater": "^3.3.0"
   },
   "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "morgan": "^1.10.1",
     "nodemon": "^3.1.14",
+    "prettier": "^3.8.1",
     "sass": "^1.97.3"
   }
 }
